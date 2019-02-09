@@ -1,9 +1,14 @@
 using System;
 
-namespace Entity
+namespace Entity.Entity
 {
     public class Portfolio
     {
-        
+        public int Id { get; set; }
+        public string ISIN { get; set; }
+        public int CurrencyId { get; set; }
+        public Currency Currency { get; set; }
+        public decimal  MarketValue { get; set; }
+                
     }
 }
