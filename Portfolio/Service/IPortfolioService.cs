@@ -5,13 +5,13 @@ using System.Text;
 
 namespace Portfolio.Service
 {
-    interface IPortfolioService
+    public interface IPortfolioService
     {
         void Create(PortfolioModel portfolio);
-        void Update(PortfolioModel portfolio);
+        void Update(string ISIN, PortfolioModel portfolioModel);
         void Delete(PortfolioModel portfolio);
         IEnumerable<PortfolioModel> GetByISINAndDate(string ISIN, DateTime date);
         PortfolioModel GetLatestByISIN(string ISIN);
-
+        PortfolioModel GetByISIN(string ISIN);
     }
 }

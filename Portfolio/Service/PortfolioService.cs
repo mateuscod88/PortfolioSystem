@@ -9,14 +9,14 @@ using Portfolio.Model;
 
 namespace Portfolio.Service
 {
-    class PortfolioService
+    public class PortfolioService : IPortfolioService
     {
         private readonly PortfolioContext _context;
         public PortfolioService(PortfolioContext context)
         {
             _context = context;
         }
-        void Create(PortfolioModel portfolioModel)
+        public void Create(PortfolioModel portfolioModel)
         {
             var portfolio = _context.Portfolios.FirstOrDefault(x => x.ISIN == portfolioModel.ISIN);
             if (portfolio == null)
@@ -40,7 +40,7 @@ namespace Portfolio.Service
                 _context.SaveChangesAsync();
             }
         }
-        void Update(string ISIN , PortfolioModel portfolioModel)
+        public void Update(string ISIN , PortfolioModel portfolioModel)
         {
             var portfolio = _context.Portfolios.FirstOrDefault(x => x.ISIN == ISIN);
             if(portfolio != null)
@@ -52,7 +52,7 @@ namespace Portfolio.Service
                 _context.SaveChangesAsync();
             }
         }
-        void Delete(PortfolioModel portfolioModel)
+        public void Delete(PortfolioModel portfolioModel)
         {
             var portfolio = _context.Portfolios.FirstOrDefault(x => x.ISIN == portfolioModel.ISIN);
             if(portfolio != null)
@@ -62,16 +62,21 @@ namespace Portfolio.Service
             }
             
         }
-        IEnumerable<PortfolioModel> GetByISINAndDate(string ISIN, DateTime date)
+        public IEnumerable<PortfolioModel> GetByISINAndDate(string ISIN, DateTime date)
         {
             return _context.Portfolios.Select(x => new PortfolioModel { Id = x.Id, ISIN = x.ISIN, MarketValue = x.MarketValue, Currency = x.Currency.Name})
                                       .Where(y => y.ISIN == ISIN && y.Date.Day == date.Day &&  y.Date.Month == date.Month && y.Date.Year == date.Year)
                                       .ToList();
         }
-        PortfolioModel GetLatestByISIN(string ISIN)
+        public PortfolioModel GetLatestByISIN(string ISIN)
         {
             return _context.Portfolios.Select(x => new PortfolioModel { Id = x.Id, ISIN = x.ISIN, MarketValue = x.MarketValue, Currency = x.Currency.Name })
                                       .OrderByDescending( y => y.Date)
+                                      .FirstOrDefault();
+        }
+        public PortfolioModel GetByISIN(string ISIN)
+        {
+            return _context.Portfolios.Select(x => new PortfolioModel { Id = x.Id, ISIN = x.ISIN, MarketValue = x.MarketValue, Currency = x.Currency.Name })
                                       .FirstOrDefault();
         }
     }

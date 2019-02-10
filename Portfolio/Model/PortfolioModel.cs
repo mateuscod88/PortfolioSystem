@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Portfolio.Model
 {
-    class PortfolioModel
+    public class PortfolioModel
     {
         public int Id { get; set; }
         public string ISIN { get; set; }
