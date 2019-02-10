@@ -1,22 +1,23 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace Entity.Entity
+namespace Position.Model
 {
-    public class Position
+    class PositionModel
     {
         public int Id { get; set; }
         public string ISIN { get; set; }
         public int CurrencyId { get; set; }
-        public Currency Currency { get; set; }
+        public string Currency { get; set; }
         public float MarketValue { get; set; }
 
         public string Name { get; set; }
         public int TypeId { get; set; }
-        public PositionType Type { get; set; }
+        public string Type { get; set; }
         public int CountyId { get; set; }
-        public Country Country { get; set; }
+        public string Country { get; set; }
         public float SharePercentage { get; set; }
         public int PortfolioId { get; set; }
-        public Portfolio Portfolio { get; set; }
     }
 }
