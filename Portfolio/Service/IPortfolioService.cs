@@ -9,7 +9,7 @@ namespace Portfolio.Service
     {
         void Create(PortfolioModel portfolio);
         void Update(string ISIN, PortfolioModel portfolioModel);
-        void Delete(PortfolioModel portfolio);
+        void Delete(string ISIN);
         IEnumerable<PortfolioModel> GetByISINAndDate(string ISIN, DateTime date);
         PortfolioModel GetLatestByISIN(string ISIN);
         PortfolioModel GetByISIN(string ISIN);

@@ -40,17 +40,34 @@ namespace Entity.Context
             //        new Position { ISIN = "GBA123123123", Name = "A", SharePercentage = 0 },
             //        new Position { ISIN = "GBA123123123", Name = "A", SharePercentage = 0 }
             //);
-            modelBuilder.Entity<Portfolio>().HasOne(x => x.Currency).WithMany(b => b.Portfolio).OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<Portfolio>().HasOne(x => x.Currency)
+                                            .WithMany(b => b.Portfolio)
+                                            .OnDelete(DeleteBehavior.SetNull);
 
-            //modelBuilder.Entity<Currency>().HasData(
-            //    new Currency { Name = "PLN" },
-            //    new Currency { Name = "DKK" },
-            //    new Currency { Name = "AUD" },
-            //    new Currency { Name = "USD" },
-            //    new Currency { Name = "XCD" },
-            //    new Currency { Name = "MXV" }
+            modelBuilder.Entity<Currency>().HasData(
+                new Currency { Id = 1, Name = "PLN" },
+                new Currency { Id = 2, Name = "DKK" },
+                new Currency { Id = 3, Name = "AUD" },
+                new Currency { Id = 4, Name = "USD" },
+                new Currency { Id = 5, Name = "XCD" },
+                new Currency { Id = 6, Name = "MXV" }
 
-            //    );
+                );
+            modelBuilder.Entity<PositionType>().HasData(
+                new PositionType{ Id = 1, Name = "Fund"  },
+                new PositionType{ Id = 2, Name = "Share" },
+                new PositionType{ Id = 3, Name = "Bond"  },
+                new PositionType{ Id = 4, Name = "Cash"  },
+                new PositionType{ Id = 5, Name = "Other" }
+                );              
+            modelBuilder.Entity<Country>().HasData(
+                new Country{ Id = 1, Name = "PL" },
+                new Country{ Id = 2, Name = "DK" },
+                new Country{ Id = 3, Name = "IR" },
+                new Country{ Id = 4, Name = "KZ" },
+                new Country{ Id = 5, Name = "ES" }
+                );           
+
 
         }
 

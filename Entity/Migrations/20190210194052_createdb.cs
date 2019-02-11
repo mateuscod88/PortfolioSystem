@@ -80,8 +80,7 @@ namespace Entity.Migrations
                     MarketValue = table.Column<float>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     TypeId = table.Column<int>(nullable: false),
-                    CountyId = table.Column<int>(nullable: false),
-                    CountryId = table.Column<int>(nullable: true),
+                    CountryId = table.Column<int>(nullable: false),
                     SharePercentage = table.Column<float>(nullable: false),
                     PortfolioId = table.Column<int>(nullable: false)
                 },
@@ -93,7 +92,7 @@ namespace Entity.Migrations
                         column: x => x.CountryId,
                         principalTable: "Countrys",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Positions_Currencys_CurrencyId",
                         column: x => x.CurrencyId,
@@ -112,6 +111,43 @@ namespace Entity.Migrations
                         principalTable: "PositionTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Countrys",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "PL" },
+                    { 2, "DK" },
+                    { 3, "IR" },
+                    { 4, "KZ" },
+                    { 5, "ES" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Currencys",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "PLN" },
+                    { 2, "DKK" },
+                    { 3, "AUD" },
+                    { 4, "USD" },
+                    { 5, "XCD" },
+                    { 6, "MXV" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "PositionTypes",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Fund" },
+                    { 2, "Share" },
+                    { 3, "Bond" },
+                    { 4, "Cash" },
+                    { 5, "Other" }
                 });
 
             migrationBuilder.CreateIndex(

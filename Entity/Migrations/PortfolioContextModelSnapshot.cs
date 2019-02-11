@@ -30,6 +30,33 @@ namespace Entity.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Countrys");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "PL"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "DK"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "IR"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "KZ"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "ES"
+                        });
                 });
 
             modelBuilder.Entity("Entity.Entity.Currency", b =>
@@ -43,6 +70,38 @@ namespace Entity.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Currencys");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "PLN"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "DKK"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "AUD"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "USD"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "XCD"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "MXV"
+                        });
                 });
 
             modelBuilder.Entity("Entity.Entity.Portfolio", b =>
@@ -72,9 +131,7 @@ namespace Entity.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CountryId");
-
-                    b.Property<int>("CountyId");
+                    b.Property<int>("CountryId");
 
                     b.Property<int>("CurrencyId");
 
@@ -114,6 +171,33 @@ namespace Entity.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PositionTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Fund"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Share"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Bond"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Cash"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Other"
+                        });
                 });
 
             modelBuilder.Entity("Entity.Entity.Portfolio", b =>
@@ -128,7 +212,8 @@ namespace Entity.Migrations
                 {
                     b.HasOne("Entity.Entity.Country", "Country")
                         .WithMany()
-                        .HasForeignKey("CountryId");
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Entity.Entity.Currency", "Currency")
                         .WithMany()
