@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Portfolio.Service;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace WebApi
 {
@@ -30,6 +31,11 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = Configuration.GetSection("Swagger").GetSection("Title").Value.ToString(), Description = Configuration.GetSection("Swagger").GetSection("Description").Value.ToString() });
+            }
+            );
             services.AddDbContext<PortfolioContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PortfolioConnectionString")));
 
             services.AddTransient<IPortfolioService, PortfolioService>();
@@ -51,6 +57,13 @@ namespace WebApi
             SeedData.Initialize(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider);
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(
+                    c =>
+                    {
+                        c.SwaggerEndpoint("/swagger/v1/swagger.json/", "Core API");
+                    }
+                );
         }
     }
 }
