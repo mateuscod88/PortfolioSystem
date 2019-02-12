@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,9 +15,11 @@ namespace WebApi.Controllers
     public class PortfolioController : ControllerBase
     {
         private readonly IPortfolioService _portfolioService;
-        public PortfolioController(IPortfolioService portfolioService)
+        private readonly IPortfolioAnaliticsService _portfolioAnaliticsService;
+        public PortfolioController(IPortfolioService portfolioService, IPortfolioAnaliticsService portfolioAnaliticsService)
         {
             _portfolioService = portfolioService;
+            _portfolioAnaliticsService = portfolioAnaliticsService;
         }
 
         [HttpGet("{isin}", Name = "GetByISIN")]
@@ -49,7 +52,17 @@ namespace WebApi.Controllers
             }
             return portfolio;
         }
+        [HttpGet(Name = "GetAgreggations")]
+        public ActionResult<PortfolioAnaliticsModel> GetAgreggations(string isin,DateTime date)
+        {
+            var portfolioAnaliticsModel = _portfolioAnaliticsService.GetByISINAndDate(isin, date);
+            if(portfolioAnaliticsModel == null)
+            {
+                return NotFound();
+            }
 
+            return portfolioAnaliticsModel;
+        }
         [HttpPost(Name = "Create")]
         public IActionResult Create([FromBody]PortfolioModel portfolioModel)
         {

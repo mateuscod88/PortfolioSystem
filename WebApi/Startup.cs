@@ -33,6 +33,7 @@ namespace WebApi
             services.AddDbContext<PortfolioContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PortfolioConnectionString")));
 
             services.AddTransient<IPortfolioService, PortfolioService>();
+            services.AddTransient<IPortfolioAnaliticsService, PortfolioAnaliticsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

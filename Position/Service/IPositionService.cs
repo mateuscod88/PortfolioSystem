@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Position.Service
 {
-    interface IPositionService
+    public interface IPositionService
     {
     }
 }

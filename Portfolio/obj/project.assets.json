@@ -907,6 +907,19 @@
           "ref/netstandard1.3/System.Threading.Tasks.dll": {}
         }
       },
+      "Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "Entity": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Common.dll": {}
+        }
+      },
       "Entity/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
@@ -3472,6 +3485,11 @@
         "system.threading.tasks.nuspec"
       ]
     },
+    "Common/1.0.0": {
+      "type": "project",
+      "path": "../Common/Common.csproj",
+      "msbuildProject": "../Common/Common.csproj"
+    },
     "Entity/1.0.0": {
       "type": "project",
       "path": "../Entity/Entity.csproj",
@@ -3480,6 +3498,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
+      "Common >= 1.0.0",
       "Entity >= 1.0.0",
       "Microsoft.NETCore.App >= 2.2.0"
     ]
@@ -3514,6 +3533,9 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
+            "E:\\PortfolioSystem\\Common\\Common.csproj": {
+              "projectPath": "E:\\PortfolioSystem\\Common\\Common.csproj"
+            },
             "E:\\PortfolioSystem\\Entity\\Entity.csproj": {
               "projectPath": "E:\\PortfolioSystem\\Entity\\Entity.csproj"
             }

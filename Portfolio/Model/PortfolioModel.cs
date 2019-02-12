@@ -18,4 +18,5 @@ namespace Portfolio.Model
         public float MarketValue { get; set; }
         public List<PositionModel> Positions { get; set; }
     }
+    
 }

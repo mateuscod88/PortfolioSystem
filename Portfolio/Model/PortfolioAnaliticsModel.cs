@@ -6,9 +6,9 @@ namespace Portfolio.Model
 {
     public class PortfolioAnaliticsModel
     {
-        public IEnumerable<CurrencyModel> Currencys { get; set; }
-        public IEnumerable<CountryModel> Countrys { get; set; }
-        public IEnumerable<PositionTypeModel> PositionTypes{ get; set; }
+        public Dictionary<string,float> Currencys { get; set; }
+        public Dictionary<string,float> Countrys { get; set; }
+        public Dictionary<string, float> PositionTypes{ get; set; }
 
     }
 }

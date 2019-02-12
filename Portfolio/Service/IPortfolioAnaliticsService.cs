@@ -7,7 +7,7 @@ namespace Portfolio.Service
 {
     public interface IPortfolioAnaliticsService
     {
-        IEnumerable<PortfolioAnaliticsModel> GetByISINAndDate(string ISIN, DateTime date);
+        PortfolioAnaliticsModel GetByISINAndDate(string ISIN, DateTime date);
 
     }
 }
